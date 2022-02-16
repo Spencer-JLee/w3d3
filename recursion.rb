@@ -30,5 +30,18 @@ def expo(base,n)
 end
 
 def deep_dup(arr)
-  
+  new_arr = Array.new()
+  return Array.new(1, arr) if !arr.instance_of?(Array)
+  i = 0
+  while i < arr.length
+    new_arr.concat(deep_dup(arr[i]))
+    i += 1
+  end
+  return new_arr
 end
+a = [["a", ["b"], ["c", ["d"]]]]
+b = deep_dup(a)
+p a[1].object_id
+p b[1].object_id
+p a 
+p b
