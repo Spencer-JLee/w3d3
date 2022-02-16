@@ -31,17 +31,34 @@ end
 
 def deep_dup(arr)
   new_arr = Array.new()
-  return Array.new(1, arr) if !arr.instance_of?(Array)
+  return arr if !arr.instance_of?(Array)
   i = 0
   while i < arr.length
-    new_arr.concat(deep_dup(arr[i]))
+    new_arr << (deep_dup(arr[i]))
     i += 1
   end
   return new_arr
 end
-a = [["a", ["b"], ["c", ["d"]]]]
-b = deep_dup(a)
-p a[1].object_id
-p b[1].object_id
-p a 
-p b
+
+def fib(n)
+  return [1] if n == 1
+  return [1,1] if n == 2
+  prev = fib(n-1)
+  last = prev[-1]
+  second_last = prev[-2]
+  prev << last+ second_last
+  return prev
+end
+
+def bin_search(arr, target)
+  return nil if target != arr[arr.length / 2] && arr.length == 1
+  if target == arr[arr.length / 2]
+    return arr.length / 2 
+  elsif target > arr[arr.length / 2]
+    bin_search(arr[arr.length / 2 + 1...arr.length], target) 
+  else
+    bin_search(arr[0...arr.length / 2], target)
+  end
+  # return nil
+end
+
