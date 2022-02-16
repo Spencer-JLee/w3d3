@@ -92,6 +92,45 @@ def merge(left, right)
   return sorted
 end
 
-def subsets(arr)
-  return [] if arr.empty? 
+def subsets(arr,collection)
+  # return [] if arr.empty?
+  # #return if arr.length == 1 
+  # i = 0
+  # new_arr = []
+  # while i < arr.length
+  #   if arr.length == 1
+  #     return new_arr << arr
+  #     subsets(arr[0...i] + arr[i+1...arr.length])
+  #   else
+  #     subsets(arr[0...i] + arr[i+1...arr.length])
+  #   end
+  #   i += 1
+  # end
+  if arr.length < 1
+    return collection
+  end
+  if arr.length == 1
+    i = 0
+    length = collection.length
+    while i < length
+      collection_item = deep_dup(collection[i])
+      if !(arr[i] == nil)
+        collection_item << arr[i]
+        collection << collection_item
+      end
+      i+=1
+    end
+  else
+    i = 0
+    while i < arr.length
+      collection = subsets(arr[i...arr.length-1],collection)
+      i+=1
+    end
+    collection << [arr[arr.length-1]]
+    collection << arr
+  end
+  return collection
 end
+
+
+p subsets([1, 2, 3],[[]])
