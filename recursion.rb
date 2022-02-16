@@ -126,7 +126,6 @@ def subsets(arr,collection)
       collection = subsets(arr[i...arr.length-1],collection)
       i+=1
     end
-    collection << [arr[arr.length-1]]
     collection << arr
   end
   return collection
