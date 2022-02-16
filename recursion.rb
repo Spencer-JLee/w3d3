@@ -84,12 +84,14 @@ def merge(left, right)
       left.shift
     end
   end
-  if !left.length == 0
-    sorted.concat(left)
-  else
+  if left.length == 0
     sorted.concat(right)
+  else
+    sorted.concat(left)
   end
   return sorted
 end
 
-p merge_sort([3, 7, 8, 1, 6, 2, 4])
+def subsets(arr)
+  return [] if arr.empty? 
+end
